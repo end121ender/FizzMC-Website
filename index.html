@@ -1553,7 +1553,6 @@ footer {
       <button type="button" class="btn" onclick="window.location.href='https://discord.gg/fizz-mc'">Discord</button>
       <button type="button" class="btn" onclick="scrollToShop()">Shop</button>
     </div>
-    <div id="playerCount" class="reveal reveal-delay-4"></div>
   </div>
 </section>
 
@@ -2072,52 +2071,6 @@ function login() {
       `<img src="https://mc-heads.net/avatar/${u}" alt="" style="width:24px;height:24px;border-radius:4px;margin-right:5px;vertical-align:middle;"> ${u}`;
   }
 }
-
-const JAVA_HOST = "play.fizzmc.fun";
-const BEDROCK_PORT = 25570;
-const JAVA_STATUS_URL = `https://api.mcsrvstat.us/2/${JAVA_HOST}`;
-const BEDROCK_STATUS_URL = `https://api.mcsrvstat.us/bedrock/3/${JAVA_HOST}:${BEDROCK_PORT}`;
-
-function formatPlayerLine(data) {
-  if (!data || data.online !== true) {
-    return `<span aria-hidden="true">🔴</span> Offline`;
-  }
-  const p = data.players;
-  if (p && typeof p.online === "number" && typeof p.max === "number") {
-    return `<span aria-hidden="true">🟢</span> ${p.online} / ${p.max} online`;
-  }
-  return `<span aria-hidden="true">🟢</span> Online`;
-}
-
-async function fetchServerStatus() {
-  const el = document.getElementById("playerCount");
-  el.innerHTML = '<span class="status-loading">Checking Java &amp; Bedrock…</span>';
-  try {
-    const [javaRes, bedrockRes] = await Promise.all([
-      fetch(JAVA_STATUS_URL),
-      fetch(BEDROCK_STATUS_URL)
-    ]);
-    const java = await javaRes.json();
-    const bedrock = await bedrockRes.json();
-
-    el.innerHTML = `
-      <div class="status-rows">
-        <div class="status-line">
-          <span class="status-label">Java</span>
-          <span class="status-value">${formatPlayerLine(java)}</span>
-        </div>
-        <div class="status-line">
-          <span class="status-label">Bedrock · ${BEDROCK_PORT}</span>
-          <span class="status-value">${formatPlayerLine(bedrock)}</span>
-        </div>
-      </div>`;
-  } catch (e) {
-    el.innerHTML = '<span class="status-error">Status unavailable</span>';
-  }
-}
-
-fetchServerStatus();
-setInterval(fetchServerStatus, 10000);
 
 function showCopied(msg) {
   const t = document.getElementById("tooltip");
