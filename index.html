@@ -1370,13 +1370,6 @@ footer {
   letter-spacing: -0.01em;
 }
 
-.manager h3 {
-  background: linear-gradient(90deg, #a855f7, #7c3aed);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 12px rgba(255, 80, 0, 0.4);
-}
-
 .shulker-wrap {
   display: flex;
   justify-content: center;
@@ -1436,6 +1429,38 @@ footer {
 .shulker-fizz      { --shulker-glow: rgba(0,234,255,0.7); }
 .shulker-influencer{ --shulker-glow: rgba(120,180,255,0.6); }
 .shulker-youtuber  { --shulker-glow: rgba(255,60,60,0.6); }
+
+/* YouTube Video Container Style */
+.youtube-container {
+  max-width: 960px;
+  margin: 40px auto 0;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+  background: rgba(12, 18, 30, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 16px;
+}
+
+.youtube-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.youtube-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
 
 @media (max-width: 768px) {
   .features .cards.rank-cards {
@@ -1533,7 +1558,7 @@ footer {
   <a href="#ranks">Ranks</a>
   <a href="#shop">Shop</a>
   <a href="#socials">Socials</a>
-  <a href="https://discord.gg/fizz-mc">Discord</a>
+  <a href="https://discord.gg/jdbzbRqnCp">Discord</a>
 </nav>
 
 <div class="navbar" id="navbar">
@@ -1558,7 +1583,7 @@ footer {
     <p class="reveal reveal-delay-2">Next-gen survival experience — events, economy, and a community that actually shows up.</p>
     <div class="hero-actions reveal reveal-delay-3">
       <button type="button" class="btn btn-primary" onclick="copyJavaAddress()">Play now</button>
-      <button type="button" class="btn" onclick="window.location.href='https://discord.gg/fizz-mc'">Discord</button>
+      <button type="button" class="btn" onclick="window.location.href='https://discord.gg/jdbzbRqnCp'">Discord</button>
       <button type="button" class="btn" onclick="scrollToShop()">Shop</button>
     </div>
   </div>
@@ -1612,6 +1637,15 @@ footer {
     </div>
   </div>
   <div class="carousel-dots" id="carouselDots" aria-hidden="true"></div>
+
+  <!-- YouTube Video Section -->
+  <div class="section-inner">
+    <div class="youtube-container reveal">
+      <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/KYdCbwIVufM" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="socials" id="socials">
@@ -1619,7 +1653,7 @@ footer {
     <span class="eyebrow reveal">Community</span>
     <h2 class="section-title reveal reveal-delay-1">Follow us</h2>
     <div class="social-icons reveal reveal-delay-2">
-      <a href="https://discord.gg/fizz-mc" target="_blank" rel="noopener noreferrer" title="Discord"><img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="" width="36" height="36" decoding="async" referrerpolicy="no-referrer-when-downgrade"></a>
+      <a href="https://discord.gg/jdbzbRqnCp" target="_blank" rel="noopener noreferrer" title="Discord"><img src="https://cdn-icons-png.flaticon.com/512/3670/3670157.png" alt="" width="36" height="36" decoding="async" referrerpolicy="no-referrer-when-downgrade"></a>
       <a href="https://www.youtube.com/@FizzMC.official" target="_blank" rel="noopener noreferrer" title="YouTube"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="" width="36" height="36" decoding="async" referrerpolicy="no-referrer-when-downgrade"></a>
       <a href="https://www.instagram.com/fizzmc_official/" target="_blank" rel="noopener noreferrer" title="Instagram"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="" width="36" height="36" decoding="async" referrerpolicy="no-referrer-when-downgrade"></a>
     </div>
@@ -1655,11 +1689,6 @@ footer {
         <p>Zya_TheDevil</p>
       </div>
 
-      <div class="staff-card manager">
-        <h3>💼 Manager</h3>
-        <p>?</p>
-      </div>
-
     </div>
   </div>
 </div>
@@ -1670,7 +1699,7 @@ footer {
     <h2 class="section-title reveal reveal-delay-1">Ranks</h2>
     <p class="section-desc reveal reveal-delay-2">Ranks can be purchased by joining our Discord server and paying the owner directly, since Tebex is currently unavailable.</p>
     <div class="hero-actions reveal reveal-delay-3">
-      <button type="button" class="btn btn-primary" onclick="window.location.href='https://discord.gg/fizz-mc'">Join Discord</button>
+      <button type="button" class="btn btn-primary" onclick="window.location.href='https://discord.gg/jdbzbRqnCp'">Join Discord</button>
     </div>
 
     <div class="features reveal reveal-delay-4">
@@ -2036,7 +2065,7 @@ footer {
     <h2 class="section-title reveal reveal-delay-1">Store</h2>
     <p class="section-desc reveal reveal-delay-2">Tebex is temporarily unavailable. For ranks, please join our Discord server and pay the owner directly.</p>
     <div class="hero-actions reveal reveal-delay-3">
-      <button type="button" class="btn btn-primary" onclick="window.location.href='https://discord.gg/fizz-mc'">Join Discord</button>
+      <button type="button" class="btn btn-primary" onclick="window.location.href='https://discord.gg/jdbzbRqnCp'">Join Discord</button>
     </div>
   </div>
 </div>
