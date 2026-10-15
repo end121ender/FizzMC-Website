@@ -367,6 +367,7 @@ body::after {
   width: 44px;
   height: 44px;
   border-radius: 12px;
+  object-fit: contain;
   box-shadow: 0 0 0 2px rgba(0, 234, 255, 0.35), 0 8px 24px rgba(0, 0, 0, 0.4);
   transition: transform var(--dur-med) var(--ease-smooth), box-shadow var(--dur-med) var(--ease-smooth);
 }
@@ -1290,6 +1291,13 @@ footer {
   }
 }
 
+.founder h3 {
+  background: linear-gradient(90deg, #ff8000, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 12px rgba(255, 128, 0, 0.4);
+}
+
 .owner h3 {
   background: linear-gradient(90deg, #ff2a2a, #ff6a00);
   -webkit-background-clip: text;
@@ -1533,7 +1541,7 @@ footer {
     <span></span><span></span><span></span>
   </button>
   <div class="nav-center">
-    <img src="https://mc-heads.net/head/Gamerfine" class="server-img" alt="">
+    <img src="axolotl.png" class="server-img" alt="">
     FizzMC
   </div>
   <div class="navbar-actions">
@@ -1624,16 +1632,21 @@ footer {
 
     <div class="staff-grid reveal reveal-delay-2">
 
+      <div class="staff-card founder">
+        <h3>🏛 Founder</h3>
+        <p>GamerFine</p>
+      </div>
+
       <div class="staff-card owner">
         <h3>👑 Owner</h3>
-        <p>GamerFine</p>
+        <p>axolotlz</p>
       </div>
 
       <div class="staff-card dictator">
         <h3>🔥 Dictators</h3>
         <p>Xrealzox</p>
         <p>Vansh</p>
-		<p>Karan</p>
+        <p>Karan</p>
         <p>Last Uchiha</p>
       </div>
 
@@ -1644,7 +1657,7 @@ footer {
 
       <div class="staff-card manager">
         <h3>💼 Manager</h3>
-        <p>Ahammad</p>
+        <p>?</p>
       </div>
 
     </div>
@@ -1669,50 +1682,34 @@ footer {
           <p>Low-tier donor rank with bonus items and server perks.</p>
           <div class="shulker-wrap">
             <div class="shulker-box shulker-nitro" aria-hidden="true">
-              <!-- LID: dome shape with pixel texture bumps -->
               <svg class="shulker-lid" viewBox="0 0 64 36" xmlns="http://www.w3.org/2000/svg" overflow="visible">
-                <!-- dome shadow -->
                 <ellipse cx="32" cy="34" rx="28" ry="4" fill="#000" opacity="0.18"/>
-                <!-- dome base fill -->
                 <path d="M4,32 Q4,4 32,2 Q60,4 60,32 Z" fill="#d4547e"/>
-                <!-- pixel shading - darker left side -->
                 <path d="M4,32 Q4,4 32,2 L32,32 Z" fill="#000" opacity="0.12"/>
-                <!-- pixel shading - lighter right patch -->
                 <path d="M32,2 Q50,4 58,18 L42,32 L32,32 Z" fill="#fff" opacity="0.08"/>
-                <!-- pixel grid lines on dome -->
                 <path d="M14,8 Q32,4 50,8" stroke="#a03060" stroke-width="1" fill="none" opacity="0.6"/>
                 <path d="M8,16 Q32,10 56,16" stroke="#a03060" stroke-width="1" fill="none" opacity="0.6"/>
                 <path d="M6,24 Q32,18 58,24" stroke="#a03060" stroke-width="1" fill="none" opacity="0.6"/>
                 <line x1="20" y1="4" x2="12" y2="32" stroke="#a03060" stroke-width="1" opacity="0.5"/>
                 <line x1="32" y1="2" x2="32" y2="32" stroke="#a03060" stroke-width="1" opacity="0.5"/>
                 <line x1="44" y1="4" x2="52" y2="32" stroke="#a03060" stroke-width="1" opacity="0.5"/>
-                <!-- center top bump (knob) -->
                 <ellipse cx="32" cy="5" rx="6" ry="4" fill="#e06090"/>
                 <ellipse cx="32" cy="4" rx="4" ry="2.5" fill="#f080aa"/>
-                <!-- eye socket -->
                 <ellipse cx="32" cy="22" rx="9" ry="7" fill="#1a0010"/>
-                <!-- eye iris -->
                 <ellipse cx="32" cy="22" rx="6" ry="5" fill="#f050a0"/>
-                <!-- eye pupil -->
                 <ellipse cx="32" cy="22" rx="3" ry="4" fill="#000" opacity="0.7"/>
-                <!-- eye shine -->
                 <ellipse cx="29" cy="20" rx="2" ry="1.5" fill="#fff" opacity="0.85"/>
-                <!-- bottom lip of lid -->
                 <rect x="4" y="30" width="56" height="4" rx="1" fill="#b03060"/>
                 <rect x="4" y="30" width="56" height="1" fill="#fff" opacity="0.1"/>
               </svg>
-              <!-- BASE -->
               <svg class="shulker-body" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg">
                 <rect x="0" y="0" width="64" height="32" rx="2" fill="#9a2050"/>
-                <!-- pixel rows -->
                 <rect x="0" y="0" width="64" height="1" fill="#fff" opacity="0.1"/>
                 <rect x="0" y="10" width="64" height="1" fill="#000" opacity="0.25"/>
                 <rect x="0" y="21" width="64" height="1" fill="#000" opacity="0.2"/>
                 <rect x="0" y="31" width="64" height="1" fill="#000" opacity="0.3"/>
-                <!-- pixel columns -->
                 <rect x="21" y="0" width="1" height="32" fill="#000" opacity="0.2"/>
                 <rect x="42" y="0" width="1" height="32" fill="#000" opacity="0.2"/>
-                <!-- face shadow on base sides -->
                 <rect x="0" y="0" width="6" height="32" fill="#000" opacity="0.15"/>
                 <rect x="58" y="0" width="6" height="32" fill="#000" opacity="0.1"/>
               </svg>
@@ -2099,8 +2096,8 @@ const rankPerksData = {
       "One-time rewards: 1k Claim Blocks and 100k Money.",
       "VIP Lounge, Diamond AFK Zone.",
       "Custom Nitro Kit plus Nitro Prefix.",
-      "Workbench access and 1 Private Vault.",
-      "4 AH slots, 2 Homes, and basic server perks."
+      "Workbench access and 6 Private Vaults.",
+      "4 AH slots, 12 Homes, and basic server perks."
     ]
   },
   Spark: {
@@ -2109,7 +2106,7 @@ const rankPerksData = {
       "One-time Rewards: 3.5k Claim Blocks, 500k Money, and 1k Gems.",
       "Special Access: Diamond AFK Zone, VIP Lounge (Discord), and Diamond Events.",
       "Flight in non-PvP and non-parkour areas.",
-      "Commands & Utilities: Workbench (/wb), 2 Private Vaults, 50 Chest Shops, 4 Homes, and 10 AH Slots.",
+      "Commands & Utilities: Workbench (/wb), 8 Private Vaults, 50 Chest Shops, 15 Homes, and 10 AH Slots.",
       "Cosmetics: Unique SPARK Prefix and the Spark Kit."
     ]
   },
@@ -2119,7 +2116,7 @@ const rankPerksData = {
       "One-time Rewards: 4k Claim Blocks, 750k Money, 3k Gems, and a one-time server crate key gift.",
       "Gameplay Advantages: Keep XP on death.",
       "Flight & Access: Fly (non-PvP/Parkour), Diamond AFK Zone, VIP Lounge, and Diamond Events.",
-      "Commands & Utilities: Workbench (/wb), 3 Private Vaults, 75 Chest Shops, 5 Homes, and 15 AH Slots.",
+      "Commands & Utilities: Workbench (/wb), 10 Private Vaults, 75 Chest Shops, 18 Homes, and 15 AH Slots.",
       "Cosmetics: Unique BLAZE Prefix and the Blaze Kit."
     ]
   },
@@ -2129,7 +2126,7 @@ const rankPerksData = {
       "One-time Rewards: 4.5k Claim Blocks, 1m Money, 4k Gems, 1 Added Heart, and 2 server crate key gifts.",
       "Gameplay Advantages: Keep XP on death and access to in-game Voice Chat.",
       "Flight & Access: Fly, Diamond AFK Zone, VIP Lounge, and Diamond Events.",
-      "Commands & Utilities: /wb, /echest, Nickname change (Discord + in-game), 4 Private Vaults, 100 Chest Shops, 6 Homes, and 20 AH Slots.",
+      "Commands & Utilities: /wb, /echest, Nickname change (Discord + in-game), 12 Private Vaults, 100 Chest Shops, 20 Homes, and 20 AH Slots.",
       "Cosmetics: Unique NOVA Prefix and the Nova Kit."
     ]
   },
@@ -2140,7 +2137,7 @@ const rankPerksData = {
       "Gameplay Advantages: Keep XP on death, in-game Voice Chat, and access to /kittycanoon.",
       "Ultimate Perk: Pay the server with in-game money for 1 custom NPC via Discord ticket.",
       "Flight & Access: Fly, Diamond AFK Zone, VIP Lounge, and Diamond Events.",
-      "Commands & Utilities: /wb, /echest, /anvil, /loom, Nickname change, 5 Private Vaults, 150 Chest Shops, 7 Homes, and 25 AH Slots.",
+      "Commands & Utilities: /wb, /echest, /anvil, /loom, Nickname change, 15 Private Vaults, 150 Chest Shops, 25 Homes, and 25 AH Slots.",
       "Cosmetics: Unique FIZZ Prefix and the Fizz Kit."
     ]
   },
@@ -2150,7 +2147,7 @@ const rankPerksData = {
       "One-time Rewards: 3.5k Claim Blocks and 1k Gems.",
       "Special Access: VIP Lounge, Diamond AFK Zone, and Diamond Events.",
       "Flight in non-PvP and non-parkour areas.",
-      "Commands & Utilities: Workbench (/wb), 2 Private Vaults, 7 AH slots, and 4 Homes.",
+      "Commands & Utilities: Workbench (/wb), 9 Private Vaults, 7 AH slots, and 16 Homes.",
       "Cosmetics: Unique INFLUENCER Prefix and the Influencer Kit.",
       "Voice Chat, Nickname change, and custom join-leave message support."
     ]
@@ -2161,7 +2158,7 @@ const rankPerksData = {
       "One-time Rewards: 4k Claim Blocks and 3k Gems.",
       "Special Access: VIP Lounge, Diamond AFK Zone, and Diamond Events.",
       "Flight in non-PvP and non-parkour areas.",
-      "Commands & Utilities: Workbench (/wb), /echest, /anvil, /loom, Nickname change, 3 Private Vaults, 15 Chest Shops, 5 Homes, and 15 AH slots.",
+      "Commands & Utilities: Workbench (/wb), /echest, /anvil, /loom, Nickname change, 12 Private Vaults, 15 Chest Shops, 20 Homes, and 15 AH slots.",
       "Cosmetics: Unique YouTuber Prefix and the YouTuber Kit.",
       "Voice Chat, custom join-leave messages, and Kittycanoon access."
     ]
@@ -2172,7 +2169,7 @@ const rankPerksData = {
       "One-time Rewards: 5k Claim Blocks, 1.5m Money, and 4.5k Gems.",
       "Special Access: VIP Lounge, Diamond AFK Zone, and Diamond Events.",
       "Flight in non-PvP and non-parkour areas.",
-      "Commands & Utilities: Workbench (/wb), /echest, /anvil, /loom, Nickname change, 5 Private Vaults, 20 Chest Shops, 7 Homes, and 20 AH slots.",
+      "Commands & Utilities: Workbench (/wb), /echest, /anvil, /loom, Nickname change, 15 Private Vaults, 20 Chest Shops, 25 Homes, and 20 AH slots.",
       "Cosmetics: Unique YouTuber+ Prefix and the YouTuber+ Kit.",
       "Voice Chat, custom join-leave messages, Kittycanoon access, and NPC payment support."
     ]
@@ -2304,7 +2301,6 @@ revealEls.forEach((el) => revealObserver.observe(el));
 
 document.querySelectorAll(".hero .reveal").forEach((el) => el.classList.add("visible"));
 
-// Touch: toggle shulker open on tap for mobile
 (function() {
   if (!window.matchMedia('(hover: none)').matches) return;
   document.querySelectorAll('.shulker-box').forEach(box => {
@@ -2312,7 +2308,6 @@ document.querySelectorAll(".hero .reveal").forEach((el) => el.classList.add("vis
       box.classList.toggle('touch-open');
     });
   });
-  // add CSS for touch-open
   const s = document.createElement('style');
   s.textContent = '.shulker-box.touch-open .shulker-lid { transform: rotateX(-55deg) translateY(-4px); }';
   document.head.appendChild(s);
