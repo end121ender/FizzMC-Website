@@ -792,6 +792,10 @@ body::after {
   color: var(--text);
   font-size: 1.35rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
 }
 
 .modal-close:hover,
@@ -2138,7 +2142,7 @@ footer {
 
 <div class="modal" id="perksModal" aria-hidden="true">
   <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="perksModalTitle">
-    <button type="button" class="modal-close" aria-label="Close perks menu">×</button>
+    <button type="button" class="modal-close" id="perksModalCloseBtn" aria-label="Close perks menu">&times;</button>
     <h3 id="perksModalTitle">Rank perks</h3>
     <div id="perksModalContent" class="perks-content"></div>
     <p class="perks-note">This rank is permanent and syncs across Discord and Minecraft after purchase!</p>
@@ -2340,15 +2344,18 @@ document.addEventListener("click", (event) => {
   }
 });
 
-document.getElementById("perksModal").addEventListener("click", (event) => {
-  if (event.target.id === "perksModal") {
+const perksModal = document.getElementById("perksModal");
+perksModal.addEventListener("click", (event) => {
+  if (event.target === perksModal || event.target.id === "perksModalCloseBtn" || event.target.closest("#perksModalCloseBtn")) {
     hideRankPerks();
   }
 });
 
-document.querySelector(".modal-close").addEventListener("click", hideRankPerks);
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") hideRankPerks();
+  if (event.key === "Escape") {
+    hideRankPerks();
+    closePlayModal();
+  }
 });
 
 function scrollToShop() {
@@ -2406,10 +2413,6 @@ navBackdrop.addEventListener("click", () => setMenuOpen(false));
 
 sideNav.querySelectorAll("a").forEach((a) => {
   a.addEventListener("click", () => setMenuOpen(false));
-});
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") setMenuOpen(false);
 });
 
 (function () {
