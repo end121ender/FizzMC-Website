@@ -506,6 +506,89 @@ body::after {
   justify-content: center;
   gap: 12px;
   margin-bottom: 28px;
+  position: relative;
+}
+
+/* Play Menu Dropdown Style */
+.play-dropdown-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.play-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px) scale(0.95);
+  background: rgba(4, 10, 18, 0.95);
+  border: 1px solid rgba(0, 234, 255, 0.3);
+  border-radius: 16px;
+  padding: 16px;
+  width: 280px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth);
+  z-index: 120;
+  text-align: left;
+}
+
+.play-menu.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.play-menu-item {
+  margin-bottom: 12px;
+}
+
+.play-menu-item:last-child {
+  margin-bottom: 0;
+}
+
+.play-menu-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.play-menu-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.play-menu-row button {
+  background: var(--cyan);
+  color: #001018;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.play-menu-row button:hover {
+  background: var(--mint);
+}
+
+.play-menu-row button:active {
+  transform: scale(0.95);
 }
 
 .btn {
@@ -1582,7 +1665,25 @@ footer {
     <h1 class="reveal reveal-delay-1">FizzMC</h1>
     <p class="reveal reveal-delay-2">Next-gen survival experience — events, economy, and a community that actually shows up.</p>
     <div class="hero-actions reveal reveal-delay-3">
-      <button type="button" class="btn btn-primary" onclick="copyJavaAddress()">Play now</button>
+      <div class="play-dropdown-wrap">
+        <button type="button" class="btn btn-primary" id="playNowBtn" onclick="togglePlayMenu(event)">Play now</button>
+        <div class="play-menu" id="playMenu">
+          <div class="play-menu-item">
+            <div class="play-menu-label">Java IP</div>
+            <div class="play-menu-row">
+              <span id="javaIpText">play.fizzmc.fun</span>
+              <button type="button" onclick="copyText('play.fizzmc.fun', 'Java IP copied!')">Copy</button>
+            </div>
+          </div>
+          <div class="play-menu-item" style="margin-top: 10px;">
+            <div class="play-menu-label">Bedrock Port</div>
+            <div class="play-menu-row">
+              <span id="bedrockPortText">30036</span>
+              <button type="button" onclick="copyText('30036', 'Bedrock port copied!')">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <button type="button" class="btn" onclick="window.location.href='https://discord.gg/jdbzbRqnCp'">Discord</button>
       <button type="button" class="btn" onclick="scrollToShop()">Shop</button>
     </div>
@@ -2072,7 +2173,7 @@ footer {
 
 
 <footer>
-  FizzMC © 2026— All rights reserved. Website made by Dev+ Zya_TheDevil. Owner of FizzMC: GamerFine
+  FizzMC © 2026— All rights reserved. Website made by Dev+ Zya_TheDevil. Owner of FizzMC: Axolotlz
 </footer>
 
 <script>
@@ -2088,6 +2189,25 @@ window.onload = () => {
 setInterval(() => {
   document.getElementById("datetime").innerText = new Date().toLocaleTimeString();
 }, 1000);
+
+const JAVA_HOST = "play.fizzmc.fun";
+const BEDROCK_PORT = "30036";
+
+function togglePlayMenu(event) {
+  event.stopPropagation();
+  const menu = document.getElementById("playMenu");
+  menu.classList.toggle("show");
+}
+
+document.addEventListener("click", () => {
+  const menu = document.getElementById("playMenu");
+  if (menu) menu.classList.remove("show");
+});
+
+function copyText(text, msg) {
+  navigator.clipboard.writeText(text);
+  showCopied(msg || "Copied!");
+}
 
 function login() {
   const u = prompt("Username:");
@@ -2106,16 +2226,6 @@ function showCopied(msg) {
     t.classList.remove("show");
     t.textContent = "Copied!";
   }, 1600);
-}
-
-function copyJavaAddress() {
-  navigator.clipboard.writeText(JAVA_HOST);
-  showCopied("Java address copied!");
-}
-
-function copyBedrockAddress() {
-  navigator.clipboard.writeText(`${JAVA_HOST}:${BEDROCK_PORT}`);
-  showCopied("Bedrock address copied!");
 }
 
 const rankPerksData = {
