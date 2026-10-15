@@ -509,44 +509,25 @@ body::after {
   position: relative;
 }
 
-/* Play Menu Dropdown Style */
-.play-dropdown-wrap {
-  position: relative;
-  display: inline-block;
-}
-
-.play-menu {
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 50%;
-  transform: translateX(-50%) translateY(10px) scale(0.95);
-  background: rgba(4, 10, 18, 0.95);
+/* Play Modal Specific Styling */
+.play-modal-dialog {
+  width: min(400px, 90vw);
+  padding: 24px;
+  background: rgba(4, 10, 18, 0.96);
   border: 1px solid rgba(0, 234, 255, 0.3);
-  border-radius: 16px;
-  padding: 16px;
-  width: 280px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth);
-  z-index: 120;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
   text-align: left;
 }
 
-.play-menu.show {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateX(-50%) translateY(0) scale(1);
+.play-modal-body {
+  margin-top: 20px;
 }
 
 .play-menu-item {
-  margin-bottom: 12px;
-}
-
-.play-menu-item:last-child {
-  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .play-menu-label {
@@ -554,37 +535,34 @@ body::after {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 4px;
+  color: var(--cyan);
 }
 
 .play-menu-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--glass-border);
-  border-radius: 8px;
-  padding: 6px 10px;
-  font-size: 13px;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--text);
+  gap: 10px;
 }
 
 .play-menu-row button {
-  background: var(--cyan);
+  background: linear-gradient(135deg, var(--mint), var(--cyan));
   color: #001018;
   border: none;
-  border-radius: 6px;
-  padding: 4px 10px;
-  font-size: 11px;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 12px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-}
-
-.play-menu-row button:hover {
-  background: var(--mint);
+  transition: transform 0.15s var(--ease-smooth), opacity 0.15s;
+  flex-shrink: 0;
 }
 
 .play-menu-row button:active {
@@ -1665,30 +1643,38 @@ footer {
     <h1 class="reveal reveal-delay-1">FizzMC</h1>
     <p class="reveal reveal-delay-2">Next-gen survival experience — events, economy, and a community that actually shows up.</p>
     <div class="hero-actions reveal reveal-delay-3">
-      <div class="play-dropdown-wrap">
-        <button type="button" class="btn btn-primary" id="playNowBtn" onclick="togglePlayMenu(event)">Play now</button>
-        <div class="play-menu" id="playMenu">
-          <div class="play-menu-item">
-            <div class="play-menu-label">Java IP</div>
-            <div class="play-menu-row">
-              <span id="javaIpText">play.fizzmc.fun</span>
-              <button type="button" onclick="copyText('play.fizzmc.fun', 'Java IP copied!')">Copy</button>
-            </div>
-          </div>
-          <div class="play-menu-item" style="margin-top: 10px;">
-            <div class="play-menu-label">Bedrock Port</div>
-            <div class="play-menu-row">
-              <span id="bedrockPortText">30036</span>
-              <button type="button" onclick="copyText('30036', 'Bedrock port copied!')">Copy</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <button type="button" class="btn btn-primary" id="playNowBtn" onclick="openPlayModal()">Play now</button>
       <button type="button" class="btn" onclick="window.location.href='https://discord.gg/jdbzbRqnCp'">Discord</button>
       <button type="button" class="btn" onclick="scrollToShop()">Shop</button>
     </div>
   </div>
 </section>
+
+<!-- Play Now Modal Pop-Up -->
+<div class="modal" id="playModal" aria-hidden="true">
+  <div class="modal-dialog play-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="playModalTitle">
+    <button type="button" class="modal-close" onclick="closePlayModal()" aria-label="Close menu">&times;</button>
+    <h3 id="playModalTitle" style="margin-top: 0; font-size: 1.5rem; text-align: center;">Join FizzMC</h3>
+    
+    <div class="play-modal-body">
+      <div class="play-menu-item">
+        <div class="play-menu-label">Java Edition (IP)</div>
+        <div class="play-menu-row">
+          <span id="javaIpText">play.fizzmc.fun</span>
+          <button type="button" onclick="copyText('play.fizzmc.fun', 'Java IP copied!')">Copy IP</button>
+        </div>
+      </div>
+      
+      <div class="play-menu-item" style="margin-top: 16px;">
+        <div class="play-menu-label">Bedrock Port</div>
+        <div class="play-menu-row">
+          <span id="bedrockPortText">30036</span>
+          <button type="button" onclick="copyText('30036', 'Bedrock port copied!')">Copy Port</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <section class="features">
   <div class="section-inner">
@@ -2173,7 +2159,7 @@ footer {
 
 
 <footer>
-  FizzMC © 2026— All rights reserved. Website made by Dev+ Zya_TheDevil. Owner of FizzMC: Axolotlz
+  FizzMC © 2026— All rights reserved. Website made by Dev+ Zya_TheDevil. Founder of FizzMC: GamerFine Owner: Axolotlz
 </footer>
 
 <script>
@@ -2193,15 +2179,26 @@ setInterval(() => {
 const JAVA_HOST = "play.fizzmc.fun";
 const BEDROCK_PORT = "30036";
 
-function togglePlayMenu(event) {
-  event.stopPropagation();
-  const menu = document.getElementById("playMenu");
-  menu.classList.toggle("show");
+function openPlayModal() {
+  const modal = document.getElementById("playModal");
+  if (modal) {
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+  }
 }
 
-document.addEventListener("click", () => {
-  const menu = document.getElementById("playMenu");
-  if (menu) menu.classList.remove("show");
+function closePlayModal() {
+  const modal = document.getElementById("playModal");
+  if (modal) {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+  }
+}
+
+document.getElementById("playModal")?.addEventListener("click", (event) => {
+  if (event.target.id === "playModal") {
+    closePlayModal();
+  }
 });
 
 function copyText(text, msg) {
